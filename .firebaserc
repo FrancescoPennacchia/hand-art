@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "auth-firebase-ionic-e2fa4": {
+      "hosting": {
+        "app": [
+          "auth-firebase-ionic-e2fa4"
+        ]
+      }
+    }
+  }
+}
