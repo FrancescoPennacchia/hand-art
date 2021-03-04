@@ -1,5 +1,7 @@
 {
   "name": "HandArt",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
