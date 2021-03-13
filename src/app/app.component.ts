@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -18,5 +20,17 @@ export class AppComponent {
     { title: 'Sign-in', url: '/sign-in', icon: 'person' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(
+    private splashScreen: SplashScreen,
+    private platform: Platform
+  ) {
+    this.initializeApp();
+  }
+
+
+  initializeApp() {
+      this.platform.ready().then(() => {
+        this.splashScreen.hide();
+      });
+  }
 }

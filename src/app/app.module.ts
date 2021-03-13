@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -23,7 +24,8 @@ import { FirebaseAuthService } from './service/firebase-auth.service';
   ],
   providers: [
     FirebaseAuthService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
   bootstrap: [AppComponent],
 })
