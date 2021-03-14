@@ -2,6 +2,18 @@ ion-menu-button {
   color: var(--ion-color-primary);
 }
 
+#custom-search ion-searchbar input.searchbar-input.sc-ion-searchbar-md{
+    border-radius: 25px !important;
+    background-position: left 8px center !important;
+    height: auto !important;
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    color: #7f8490 !important;
+    background-color: white !important;
+    -webkit-box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
 #container {
   text-align: center;
   position: absolute;
