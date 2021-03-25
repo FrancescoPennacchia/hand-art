@@ -18,5 +18,18 @@
 
   <div id="container">
     <strong class="capitalize">Null</strong>
+    <div *ngIf="loading">
+      Loading...
+    </div>
+    <div *ngIf="error">
+      Error :(
+    </div>
+    <div *ngIf="data">
+      <ion-list>
+        <ion-item *ngFor="let category of data">
+          {{ category.category }}
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
