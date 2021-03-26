@@ -15,21 +15,51 @@
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <div id="container">
-    <strong class="capitalize">Null</strong>
-    <div *ngIf="loading">
-      Loading...
-    </div>
-    <div *ngIf="error">
-      Error :(
-    </div>
-    <div *ngIf="data">
-      <ion-list>
-        <ion-item *ngFor="let category of data">
-          {{ category.category }}
-        </ion-item>
-      </ion-list>
-    </div>
+    <strong>Featured Categories</strong>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/modern.png" height="175" width="357"/>
+              Impressionist & Modern Art
+          </ion-router-link>
+        </ion-col>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/contemporaryart.jpg" height="175" width="357"/>
+              Contemporary Art
+          </ion-router-link>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/photograph.png" height="175" width="357"/>
+              Photography
+          </ion-router-link>
+        </ion-col>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/postwar.png" height="175" width="357"/>
+              Post War Art
+          </ion-router-link>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/pre20th.png" height="175" width="357"/>
+              Pre-20th Century
+          </ion-router-link>
+        </ion-col>
+        <ion-col>
+          <ion-router-link color="dark" href="#">
+            <img src="../../assets/home/category/streetart.png" height="175" width="357"/>
+            Street Art
+          </ion-router-link>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
