@@ -5,61 +5,73 @@
     <ion-buttons slot="end">
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
-    </ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div id="container">
-    <strong>Featured Categories</strong>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/modern.png" height="175" width="357"/>
-              Impressionist & Modern Art
-          </ion-router-link>
-        </ion-col>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/contemporaryart.jpg" height="175" width="357"/>
-              Contemporary Art
-          </ion-router-link>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/photograph.png" height="175" width="357"/>
-              Photography
-          </ion-router-link>
-        </ion-col>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/postwar.png" height="175" width="357"/>
-              Post War Art
-          </ion-router-link>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/pre20th.png" height="175" width="357"/>
-              Pre-20th Century
-          </ion-router-link>
-        </ion-col>
-        <ion-col>
-          <ion-router-link color="dark" href="#">
-            <img src="../../assets/home/category/streetart.png" height="175" width="357"/>
-            Street Art
-          </ion-router-link>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <h1>Featured Categories</h1>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/modern.png" height="175" width="357"/>
+        </ion-router-link>
+        <ion-router-link color="dark" href="#">
+          Impressionist & Modern Art
+        </ion-router-link>
+      </ion-col>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/contemporaryart.jpg" height="175" width="357"/>
+          Contemporary Art
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/photograph.png" height="175" width="357"/>
+          Photography
+        </ion-router-link>
+      </ion-col>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/postwar.png" height="175" width="357"/>
+          Post War Art
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/pre20th.png" height="175" width="357"/>
+          Pre-20th Century
+        </ion-router-link>
+      </ion-col>
+      <ion-col>
+        <ion-router-link color="dark" href="#">
+          <img src="../../assets/home/category/streetart.png" height="175" width="357"/>
+          Street Art
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="loading">
+    Loading...
+  </div>
+  <div *ngIf="error">
+    Error :(
+  </div>
+  <div *ngIf="data">
+    <ion-list>
+      {{data}}
+      <ion-item *ngFor="let artist of data">
+        {{ artist }}
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

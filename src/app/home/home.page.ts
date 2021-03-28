@@ -3,10 +3,15 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 
-const Category = gql`
+const PopulartArtist = gql`
   query {
-    marketingCollections (size: 4){
-      category
+    popular_artists(size: 5) {
+      artists {
+        name
+        artworks {
+          title
+        }
+      }
     }
   }
 `;
@@ -27,11 +32,11 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.apollo
       .watchQuery({
-        query: Category,
+        query: PopulartArtist,
       })
       .valueChanges.subscribe((result: any) => {
       console.log('result', result.data);
-      this.data = result.data.marketingCollections;
+      this.data = result.data.popular_artists;
       this.loading = result.loading;
       this.error = result.errors;
     });
