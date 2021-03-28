@@ -9,7 +9,6 @@ import { Platform } from '@ionic/angular';
 })
 export class AppComponent {
 
-
   public appPages = [
     { title: 'Home', url: '/', icon: 'home' },
     { title: 'Opere', url: '/listaopere', icon: 'color-palette' },

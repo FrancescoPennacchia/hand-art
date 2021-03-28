@@ -12,51 +12,20 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <h1>Featured Categories</h1>
+      <h1 class="cat-title">Featured Categories</h1>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/modern.png" height="175" width="357"/>
-        </ion-router-link>
-        <ion-router-link color="dark" href="#">
-          Impressionist & Modern Art
-        </ion-router-link>
-      </ion-col>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/contemporaryart.jpg" height="175" width="357"/>
-          Contemporary Art
+      <ion-col *ngFor="let cat of categoryHome;" size="6">
+        <ion-router-link color="dark" href="{{ cat.url }}">
+          <img src="{{ cat.src }}" height="125" width="155"/>
+          <h2 class="cat-name">{{ cat.name }}</h2>
         </ion-router-link>
       </ion-col>
     </ion-row>
+  </ion-grid>
+  <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/photograph.png" height="175" width="357"/>
-          Photography
-        </ion-router-link>
-      </ion-col>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/postwar.png" height="175" width="357"/>
-          Post War Art
-        </ion-router-link>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/pre20th.png" height="175" width="357"/>
-          Pre-20th Century
-        </ion-router-link>
-      </ion-col>
-      <ion-col>
-        <ion-router-link color="dark" href="#">
-          <img src="../../assets/home/category/streetart.png" height="175" width="357"/>
-          Street Art
-        </ion-router-link>
-      </ion-col>
+      <h1 class="cat-title">Popular Artist</h1>
     </ion-row>
   </ion-grid>
 
@@ -64,13 +33,14 @@
     Loading...
   </div>
   <div *ngIf="error">
-    Error :(
+    Server Error
   </div>
-  <div *ngIf="data">
+  <div *ngIf="artists">
     <ion-list>
-      {{data}}
-      <ion-item *ngFor="let artist of data">
-        {{ artist }}
+      <ion-item *ngFor="let artist of artists">
+        <ion-router-link color="dark" href="#">
+          {{ artist.name }}
+        </ion-router-link>
       </ion-item>
     </ion-list>
   </div>
