@@ -11,8 +11,8 @@ export class AppComponent {
 
   public appPages = [
     { title: 'Home', url: '/', icon: 'home' },
-    { title: 'Opere', url: '/listaopere', icon: 'color-palette' },
-    { title: 'Autori', url: '/listaautori', icon: 'people' },
+    { title: 'Opere', url: '/artworks', icon: 'color-palette' },
+    { title: 'Autori', url: '/artists', icon: 'people' },
   ];
 
   public userPages = [

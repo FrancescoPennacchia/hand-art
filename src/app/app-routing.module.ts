@@ -28,13 +28,14 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'listaopere',
-    loadChildren: () => import('./listaopere/listaopere.module').then( m => m.ListaoperePageModule)
+    path: 'artworks',
+    loadChildren: () => import('./artworks/artworks.module').then( m => m.ArtworksPageModule)
   },
   {
-    path: 'listaautori',
-    loadChildren: () => import('./listaautori/listaautori.module').then( m => m.ListaautoriPageModule)
+    path: 'artists',
+    loadChildren: () => import('./artists/artists.module').then( m => m.ArtistsPageModule)
   }
+
 ];
 
 @NgModule({
