@@ -9,13 +9,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list></ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+
+
+  <ion-grid class="grid">
+    <ion-row *ngIf="artworks && artworks.length > 0" class="content" >
+      <ion-col size="6" size-md="4" size-lg="3" class="grid-box"  *ngFor="let artwork of artworks">
+        <div class="dummy-square"></div>
+        {{artwork.artworks.id}}
+        <img [src]="" >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

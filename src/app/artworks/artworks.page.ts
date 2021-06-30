@@ -1,10 +1,6 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-
-
-
+import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-artworks',
@@ -12,26 +8,25 @@ import gql from 'graphql-tag';
   styleUrls: ['./artworks.page.scss'],
 })
 export class ArtworksPage implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor() { }
+  public categoryHome: any[] = [
+    { name: 'Impressionist & Modern Art', src: '../../assets/home/category/modern.png' , url: '/'},
+    { name: 'Contemporary Art', src: '../../assets/home/category/contemporaryart.jpg' , url: '/'},
+    { name: 'Photography', src: '../../assets/home/category/photograph.png' , url: '/'},
+    { name: 'Pre-20th Century', src: '../../assets/home/category/pre20th.png' , url: '/'},
+    { name: 'Post War Art', src: '../../assets/home/category/postwar.png' , url: '/'},
+    { name: 'Street Art', src: '../../assets/home/category/streetart.png' , url: '/'},
+  ];
 
+  constructor(private dataService: DataService) { }
+
+  artworks: any = [];
   ngOnInit() {
+
+    this.dataService.getArtworksData().subscribe(data => {
+      console.log(data);
+      this.artworks = data;
+      console.log(this.artworks);
+    });
   }
 
-  loadData(event) {
-    setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      /*if (data.length == 1000) {
-        event.target.disabled = true;
-      }*/
-    }, 500);
-  }
-
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-  }
 }
