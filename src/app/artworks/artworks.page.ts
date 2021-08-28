@@ -19,13 +19,18 @@ export class ArtworksPage implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  artworks: any = [];
+  appo: any = [];
+  opere: any = [];
+  links: any = [];
   ngOnInit() {
 
     this.dataService.getArtworksData().subscribe(data => {
-      console.log(data);
-      this.artworks = data;
-      console.log(this.artworks);
+      // console.log(data);
+      this.appo = data;
+      this.opere = this.appo._embedded.artworks;
+      this.links = this.appo._embedded.artworks._links;
+      console.log(this.opere);                            // Recive artworks list, ok
+      console.log(this.links);                            // Recive undefined
     });
   }
 

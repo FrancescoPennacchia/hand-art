@@ -42,7 +42,7 @@ import {InMemoryCache} from '@apollo/client/core';
           link: httpLink.create({
             uri: 'https://metaphysics-production.artsy.net/',
             headers: new HttpHeaders({
-              'x-access-token': 'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IiIsInN1YmplY3RfYXBwbGljYXRpb24iOiI1ZmIxNDBiN2ZjMmM3MjAwMGVhMTQxMDAiLCJleHAiOjE2MjU1MTA0NDksImlhdCI6MTYyNDkwNTY0OSwiYXVkIjoiNWZiMTQwYjdmYzJjNzIwMDBlYTE0MTAwIiwiaXNzIjoiR3Jhdml0eSIsImp0aSI6IjYwZGExN2IxMjg5Yjc0MDAwZWUwODFhZCJ9.b81D6kTHGo3PbPhpiFYvMNpFnLYOcCwDt2k9zBIpC8E'
+              'x-access-token': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmIxNDA4ZjIzNjQxYjAwMGU4NDAzZjEiLCJzYWx0X2hhc2giOiI1ZjYwN2Q1YWU0ODJlZDAyODBjYzY5MjYyNjZlNjVmYiIsInJvbGVzIjoidXNlciIsInBhcnRuZXJfaWRzIjpbXSwib3RwIjpmYWxzZSwiZXhwIjoxNjMwMzE0MzI0LCJpYXQiOjE2MjUxMzAzMjQsImF1ZCI6IjVkNDA5OTZlNmU2MDQ5MDAwNzQ5MGZhMiIsImlzcyI6IkdyYXZpdHkiLCJqdGkiOiI2MGRkODU1NGZhMmNkMjAwMTQwMDZmYzMifQ.9Eas9rKrjsuCpdJ5YnBAFghsBnyBfvHaIwppJDv4Owc'
             })
           }),
         };
