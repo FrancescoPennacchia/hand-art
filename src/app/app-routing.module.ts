@@ -9,31 +9,31 @@ const routes: Routes = [
   },
   {
     path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    loadChildren: () => import('./pages/folder/folder.module').then(m => m.FolderPageModule)
   },
   {
     path: 'profile',
-    loadChildren: () => import('./auth/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/auth/profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
     path: 'sign-in',
-    loadChildren: () => import('./auth/sign-in/sign-in.module').then( m => m.SignInPageModule)
+    loadChildren: () => import('./pages/auth/sign-in/sign-in.module').then(m => m.SignInPageModule)
   },
   {
     path: 'sign-up',
-    loadChildren: () => import('./auth/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'artworks',
-    loadChildren: () => import('./artworks/artworks.module').then( m => m.ArtworksPageModule)
+    loadChildren: () => import('./pages/artworks/artworks.module').then(m => m.ArtworksPageModule)
   },
   {
     path: 'artists',
-    loadChildren: () => import('./artists/artists.module').then( m => m.ArtistsPageModule)
+    loadChildren: () => import('./pages/artists/artists.module').then(m => m.ArtistsPageModule)
   }
 
 ];

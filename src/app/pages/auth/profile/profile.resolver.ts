@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { FirebaseAuthService } from '../../service/firebase-auth.service';
+import { FirebaseAuthService } from '../../../service/firebase-auth.service';
 
 @Injectable()
 export class ProfilePageResolver implements Resolve<any> {

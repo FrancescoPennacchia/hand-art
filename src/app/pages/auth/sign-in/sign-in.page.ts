@@ -2,7 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FirebaseAuthService } from '../../service/firebase-auth.service';
+import { FirebaseAuthService } from '../../../service/firebase-auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
