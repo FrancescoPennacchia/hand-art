@@ -1,48 +1,73 @@
-import { Component, NgZone } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseAuthService } from '../../../service/firebase-auth.service';
 import { Subscription } from 'rxjs';
+import {Account, UtenteService} from '../../../service/utente.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Utente} from '../../../model/utente.model';
+import {AlertController, NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: 'sign-in.page.html',
   styleUrls: ['sign-in.page.scss'],
 })
-export class SignInPage {
-  signInForm: FormGroup;
-  submitError: string;
-  authRedirectResult: Subscription;
-
-  validation_messages = {
-    'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
-    ],
-    'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
-    ]
-  };
+export class SignInPage implements OnInit{
+  private loginFormModel: FormGroup;
+  private loginTitle: string;
+  private loginSubTitle: string;
 
   constructor(
-    public angularFire: AngularFireAuth,
-    public router: Router,
-    private ngZone: NgZone,
-    private authService: FirebaseAuthService
+    private formBuilder: FormBuilder,
+    private alertController: AlertController,
+    private navController: NavController,
+    private utenteService: UtenteService
   ) {
-    this.signInForm = new FormGroup({
-      'email': new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      'password': new FormControl('', Validators.compose([
-        Validators.minLength(6),
+
+  }
+
+  ngOnInit() {
+    this.loginFormModel = this.formBuilder.group({
+      username: ['Francesco', Validators.compose([
         Validators.required
-      ]))
+      ])],
+      password: ['ciao1234', Validators.compose([
+        Validators.required
+      ])]
+    });
+  }
+
+  signInWithUsername() {
+    const account: Account = this.loginFormModel.value;
+    this.utenteService.login(account).subscribe((utente: Utente) => {
+        this.loginFormModel.reset();
+        this.navController.navigateRoot('home');
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          console.error('login request error: ' + err.status);
+          this.showLoginError();
+        }
+      });
+  }
+
+  async showLoginError() {
+    const alert = await this.alertController.create({
+      header: this.loginTitle,
+      message: this.loginSubTitle,
+      buttons: ['OK']
     });
 
+    await alert.present();
+  }
+
+
+
+
+
+    /*
     // Get firebase authentication redirect result invoken when using signInWithRedirect()
     // signInWithRedirect() is only used when client is in web but not desktop
     this.authRedirectResult = this.authService.getRedirectResult()
@@ -52,9 +77,8 @@ export class SignInPage {
       } else if (result.error) {
         this.submitError = result.error;
       }
-    });
-  }
-
+    });*/
+  /*
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
   // redirect the user to the profile page
   redirectLoggedUserToProfilePage() {
@@ -76,6 +100,9 @@ export class SignInPage {
     });
   }
 
+
+   */
+/*
   facebookSignIn() {
     this.authService.signInWithFacebook()
     .then((result: any) => {
@@ -85,7 +112,7 @@ export class SignInPage {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       // const token = result.credential.accessToken;
       // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
+      this.navController.navigateRoot('home');
     }).catch((error) => {
       // Handle Errors here.
       console.log(error);
@@ -101,7 +128,7 @@ export class SignInPage {
       // This gives you a Google Access Token. You can use it to access the Google API.
       // const token = result.credential.accessToken;
       // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
+      this.navController.navigateRoot('home');
     }).catch((error) => {
       // Handle Errors here.
       console.log(error);
@@ -117,10 +144,10 @@ export class SignInPage {
       // This gives you a Twitter Access Token. You can use it to access the Twitter API.
       // const token = result.credential.accessToken;
       // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
+      this.navController.navigateRoot('home');
     }).catch((error) => {
       // Handle Errors here.
       console.log(error);
     });
-  }
+  }*/
 }

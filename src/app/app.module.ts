@@ -18,7 +18,7 @@ import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
 import { HttpHeaders } from '@angular/common/http';
 import {InMemoryCache} from '@apollo/client/core';
-
+import { IonicStorageModule } from '@ionic/storage'
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +26,10 @@ import {InMemoryCache} from '@apollo/client/core';
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: 'handart__db',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
     AngularFireAuthModule

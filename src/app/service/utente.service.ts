@@ -24,6 +24,7 @@ export class UtenteService {
   constructor(private http: HttpClient, private storage: Storage) {
 
     this.storage.get(AUTH_TOKEN).then((token) => {
+      console.log('Token:');
       console.log(token);
       this.authToken = token;
       if (token !== null && token !== undefined && token !== '') {
@@ -37,6 +38,7 @@ export class UtenteService {
   }
 
   login(account: Account): Observable<Utente> {
+    console.log(account);
     return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
       map((resp: HttpResponse<Utente>) => {
         const token = resp.headers.get(X_AUTH);
