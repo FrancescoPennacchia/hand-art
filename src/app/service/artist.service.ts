@@ -6,7 +6,9 @@ import {Artwork} from '../model/artwork/artwork.model';
 import {URL} from '../constants';
 
 import {Observable} from 'rxjs';
+
 import {Artist} from '../model/artist/artist.model';
+import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +19,13 @@ export class ArtistService {
   }
 
   /* PARTE RICHIESTE GRAPH */
-  getPopularArtistGraph(size: number): Observable<Artist[]> {
+  getPopularArtistGraph(size: number) {
     const params = new HttpParams().set('size', String(size));
-    return this.http.get<Artist[]>(URL.GRAPH_POPULAR_ARTISTS, {params});
+    this.http.get(URL.GRAPH_POPULAR_ARTISTS, {params}).subscribe(data => {
+      console.log(data);
+;      return data.toString();
+    });
+
   }
 
   getArtistByIdGraph(idArtist: string ): Observable<Artist> {
@@ -56,5 +62,6 @@ export class ArtistService {
     const params = new HttpParams().set('size', String(size));
     return this.http.get<string>(URL.REST_ARTISTS_LIST_SIZE, {params});
   }
+
 
 }

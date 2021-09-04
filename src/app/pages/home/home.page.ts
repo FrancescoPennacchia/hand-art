@@ -1,18 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-
-
-const PopulartArtist = gql`
-  query {
-    popular_artists(size: 5) {
-      artists {
-        id
-        name
-      }
-    }
-  }
-`;
+import {ArtistService} from '../../service/artist.service';
+import {Observable} from 'rxjs';
+import {Artist} from '../../model/artist/artist.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {URL} from '../../constants';
 
 @Component({
   selector: 'app-home',
@@ -30,25 +21,18 @@ export class HomePage implements OnInit {
     { name: 'Street Art', src: '../../assets/home/category/streetart.png' , url: '/'},
   ];
 
-  artists: any[];
+  artists: any;
   loading = true;
   error: any;
 
-  constructor(private apollo: Apollo) {
+  constructor(private artistiService: ArtistService, private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.apollo
-      .watchQuery({
-        query: PopulartArtist,
-      })
-      .valueChanges.subscribe((result: any) => {
-      console.log('result', result.data);
-      this.artists = result.data.popular_artists.artists;
-      console.log('Artists', this.artists);
-      this.loading = result.loading;
-      this.error = result.errors;
-    });
+
+   const ciao = this.artistiService.getPopularArtistGraph(10);
+   console.log(ciao);
+
   }
 
 }

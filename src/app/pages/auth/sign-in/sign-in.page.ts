@@ -16,8 +16,8 @@ import {AlertController, NavController} from '@ionic/angular';
 })
 export class SignInPage implements OnInit{
   private loginFormModel: FormGroup;
-  private loginTitle: string;
-  private loginSubTitle: string;
+  private loginTitle = 'Credenziali Errate';
+  private loginSubTitle = 'Credenziali Errate';
 
   constructor(
     private formBuilder: FormBuilder,

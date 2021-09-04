@@ -24,7 +24,6 @@ export class UtenteService {
   constructor(private http: HttpClient, private storage: Storage) {
 
     this.storage.get(AUTH_TOKEN).then((token) => {
-      console.log('Token:');
       console.log(token);
       this.authToken = token;
       if (token !== null && token !== undefined && token !== '') {
@@ -38,10 +37,11 @@ export class UtenteService {
   }
 
   login(account: Account): Observable<Utente> {
-    console.log(account);
     return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
       map((resp: HttpResponse<Utente>) => {
-        const token = resp.headers.get(X_AUTH);
+        const token = resp.body.token;
+        console.log('header');
+        console.log(resp.headers.get(X_AUTH));
         this.storage.set(AUTH_TOKEN, token);
         this.authToken = token;
         // Utente memorizzato nello storage in modo tale che se si vuole cambiare il
@@ -50,6 +50,9 @@ export class UtenteService {
         // update dell'observable dell'utente
         this.utente$.next(resp.body);
         this.loggedIn$.next(true);
+        console.log('token');
+        console.log(token);
+        console.log(resp.body);
         return resp.body;
       }));
   }
