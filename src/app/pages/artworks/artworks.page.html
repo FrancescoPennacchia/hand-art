@@ -8,18 +8,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
 
+  <!-- Responsive Layout with Ion Grid-->
 
-  <ion-grid class="grid">
-    <ion-row *ngIf="opere && opere.length > 0" class="content" >
-      <ion-col size="6" size-md="4" size-lg="3" class="grid-box"  *ngFor="let artwork of opere">
-        <div class="dummy-square"></div>
-
-        <img [src]="" >
+    <ion-row>
+      <ion-col col-6 col-md-4 col-xl-3 *ngFor="let artwork of artworks">
+        <img src="{{artwork._links.thumbnail.href}}" alt="NULL">
+        <label>{{artwork.title}}</label>
       </ion-col>
     </ion-row>
-  </ion-grid>
 
 </ion-content>

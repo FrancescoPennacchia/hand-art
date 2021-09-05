@@ -24,16 +24,16 @@ export class ArtworkService {
     return this.http.get<string>(URL.REST_ARTWORK_LIST_SIZE, {params});
   }
 
-  getRandomArtistRest(): Observable<string> {
+  getRandomArtworkRest(): Observable<string> {
     return this.http.get<string>(URL.REST_RANDOM_ARTWORK);
   }
 
-  getArtistsBySortRest(sort: string): Observable<string> {
+  getArtworksBySortRest(sort: string): Observable<string> {
     const params = new HttpParams().set('sort', String(sort));
     return this.http.get<string>(URL.REST_ARTWORKS_BY_SORT, {params});
   }
 
-  getArtistsByOffsetRest(offset: number): Observable<string> {
+  getArtworksByOffsetRest(offset: number): Observable<string> {
     const params = new HttpParams().set('offset', String(offset));
     return this.http.get<string>(URL.REST_ARTWORK_LIST_OFFSET, {params});
   }
