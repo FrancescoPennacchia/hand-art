@@ -19,13 +19,9 @@ export class ArtistService {
   }
 
   /* PARTE RICHIESTE GRAPH */
-  getPopularArtistGraph(size: number) {
+  getPopularArtistGraph(size: number): Observable<Artist[]> {
     const params = new HttpParams().set('size', String(size));
-    this.http.get(URL.GRAPH_POPULAR_ARTISTS, {params}).subscribe(data => {
-      console.log(data);
-;      return data.toString();
-    });
-
+    return this.http.get<Artist[]>(URL.GRAPH_POPULAR_ARTISTS, {params});
   }
 
   getArtistByIdGraph(idArtist: string ): Observable<Artist> {

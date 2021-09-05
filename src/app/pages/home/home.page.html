@@ -25,22 +25,22 @@
   </ion-grid>
   <ion-grid>
     <ion-row>
-      <h1 class="cat-title">Popular Artist</h1>
+      <h1 class="cat-title">Popular Artists</h1>
     </ion-row>
   </ion-grid>
 
-  <div *ngIf="loading">
-    Loading...
-  </div>
-  <div *ngIf="error">
-    Server Error
-  </div>
-  <div *ngIf="artists">
+  <div *ngIf="popularArtists">
     <ion-list>
-      <ion-item *ngFor="let artist of artists">
-        <ion-router-link color="dark" href="#">
-          <h2 class="cat-name"> {{ artist.name }} </h2>
-        </ion-router-link>
+      <ion-item *ngFor="let artist of popularArtists">
+         <ion-avatar slot="start">
+          <img src="{{ artist.image.url }}" alt="NULL">
+        </ion-avatar>
+        <ion-label>
+          <ion-router-link color="dark" href="#">
+            <h2>{{ artist.name }}</h2>
+          </ion-router-link>
+          <p>{{ artist.blurb.substring(0,38) }}...</p>
+        </ion-label>
       </ion-item>
     </ion-list>
   </div>

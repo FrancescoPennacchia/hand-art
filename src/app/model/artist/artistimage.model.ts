@@ -1,3 +1,3 @@
-export class ArtistImage {
+export interface  ArtistImage {
   url: string;
 }

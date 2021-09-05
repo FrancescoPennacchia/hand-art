@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ArtistService} from '../../service/artist.service';
-import {Observable} from 'rxjs';
 import {Artist} from '../../model/artist/artist.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {URL} from '../../constants';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,9 @@ import {URL} from '../../constants';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  public popularArtists: Array<Artist>;
+  loading = true;
+  error: any;
 
   public categoryHome: any[] = [
     { name: 'Impressionist & Modern Art', src: '../../assets/home/category/modern.png' , url: '/'},
@@ -21,18 +25,14 @@ export class HomePage implements OnInit {
     { name: 'Street Art', src: '../../assets/home/category/streetart.png' , url: '/'},
   ];
 
-  artists: any;
-  loading = true;
-  error: any;
 
-  constructor(private artistiService: ArtistService, private http: HttpClient) {
+  constructor(private artistiService: ArtistService) {
   }
 
   ngOnInit() {
-
-   const ciao = this.artistiService.getPopularArtistGraph(10);
-   console.log(ciao);
-
+    this.artistiService.getPopularArtistGraph(5).subscribe(res => {
+      this.popularArtists = res;
+      console.log(this.popularArtists);
+    });
   }
-
 }

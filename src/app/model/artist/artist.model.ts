@@ -1,6 +1,6 @@
 import {ArtistImage} from './artistimage.model';
 
-export class Artist {
+export interface  Artist {
   id: string;
   _id: string;
   name: string;
