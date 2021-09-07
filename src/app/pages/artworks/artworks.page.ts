@@ -9,17 +9,39 @@ import {ArtworkService} from '../../service/artwork.service';
 })
 export class ArtworksPage implements OnInit {
 
-  constructor(private artworkService: ArtworkService) { }
+  constructor(private artworkService: ArtworkService) { this.addMoreItems(); }
 
-  appo: any = [];
-  artworks: any = [];
-  image: any = [];
+  private appo: any = []; // Variabili di appoggio
+  private appo2: any = [];
+  private numTimesLeft = 5;
+  private offset = 20;
+  public artworks: any = [];
 
   ngOnInit() {
-    this.artworkService.getArtworksBySizeRest(10).subscribe(data => {
+    this.artworkService.getArtworksBySizeRest(20).subscribe(data => {
       this.appo = data;
       this.artworks = this.appo._embedded.artworks;
     });
   }
 
+  loadData(event) {
+    setTimeout(() => {
+      // console.log('Done');
+      this.addMoreItems();
+      this.numTimesLeft -= 1;
+      event.target.complete();
+    }, 2000);
+  }
+
+  addMoreItems() {
+    this.artworkService.getArtworksByOffsetRest(this.offset).subscribe(data => {
+      this.appo = data;
+      this.appo2 = this.appo._embedded.artworks;
+      for (let i = 0; i < 5; i++){
+        this.artworks.push(this.appo2[i]);
+      }
+      this.offset = this.offset + 5;
+    });
+
+  }
 }
