@@ -10,14 +10,13 @@
 
 <ion-content padding>
 
-
-  <!-- Responsive Layout with Ion Grid-->
-
-    <ion-row>
-      <ion-col col-6 col-md-4 col-xl-3 *ngFor="let artwork of artworks">
-        <img src="{{artwork._links.thumbnail.href}}" alt="NULL">
-        <label>{{artwork.title}}</label>
-      </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col *ngFor="let artwork of artworks;" size="6">
+      <ion-router-link color="dark" href="">
+        <img src="{{artwork._links.thumbnail.href}}" height="125" width="155"/>
+        <h2 class="cat-name">{{artwork.title}}</h2>
+      </ion-router-link>
+    </ion-col>
+  </ion-row>
 
 </ion-content>
