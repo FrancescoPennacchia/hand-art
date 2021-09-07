@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ArtistService} from '../../service/artist.service';
+import {Artist} from '../../model/artist/artist.model';
 
 @Component({
   selector: 'app-artists',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtistsPage implements OnInit {
 
-  constructor() { }
+  constructor(private artistService: ArtistService) { }
+
+  public artists: Array<Artist>;
 
   ngOnInit() {
+    this.artistService.getPopularArtistGraph(100).subscribe(data => {
+      this.artists = data;
+    });
   }
-
 }
+
+
+

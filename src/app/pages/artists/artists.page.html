@@ -8,6 +8,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <ion-row>
+    <ion-col *ngFor="let artist of artists;" size="6">
+      <ion-router-link color="dark" href="">
+        <img src="{{ artist.image.url }}" height="125" width="155" alt="NULL"/>
+        <h2 class="cat-name">{{ artist.name }}</h2>
+      </ion-router-link>
+    </ion-col>
+  </ion-row>
 </ion-content>

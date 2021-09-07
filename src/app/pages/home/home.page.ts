@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.artistiService.getPopularArtistGraph(5).subscribe(res => {
       this.popularArtists = res;
-      console.log(this.popularArtists);
+      // console.log(this.popularArtists);
     });
   }
 }
