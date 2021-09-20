@@ -36,7 +36,7 @@
           <img src="{{ artist.image.url }}" alt="NULL">
         </ion-avatar>
         <ion-label>
-          <ion-router-link color="dark" href="#">
+          <ion-router-link color="dark" [routerLink]="['/artist-detail', 'asd' ]">
             <h2>{{ artist.name }}</h2>
           </ion-router-link>
           <p>{{ artist.blurb.substring(0,38) }}...</p>

@@ -13,9 +13,11 @@ export class ArtistDetailPage implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log('vaffanculo');
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.idArtist = params.get('id');
     });
+    console.log(this.idArtist);
   }
 
 }
