@@ -34,7 +34,16 @@ const routes: Routes = [
   {
     path: 'artists',
     loadChildren: () => import('./pages/artists/artists.module').then(m => m.ArtistsPageModule)
+  },
+  {
+    path: 'artist-detail:id',
+    loadChildren: () => import('./pages/artist-detail/artist-detail.module').then( m => m.ArtistDetailPageModule)
+  },
+  {
+    path: 'artwork-detail:id',
+    loadChildren: () => import('./pages/artwork-detail/artwork-detail.module').then( m => m.ArtworkDetailPageModule)
   }
+
 
 ];
 
