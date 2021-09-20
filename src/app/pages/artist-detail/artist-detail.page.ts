@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {Artist} from '../../model/artist/artist.model';
+import {ArtistService} from '../../service/artist.service';
 
 @Component({
   selector: 'app-artist-detail',
@@ -9,15 +11,21 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 export class ArtistDetailPage implements OnInit {
 
   private idArtist: string;
+  public artist: Artist;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private artistService: ArtistService
+              ) { }
 
   ngOnInit() {
-    console.log('vaffanculo');
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.idArtist = params.get('id');
     });
-    console.log(this.idArtist);
+
+    this.artistService.getArtistByIdGraph(this.idArtist).subscribe(res => {
+      this.artist = res;
+      //console.log(this.artist);
+    });
   }
 
 }

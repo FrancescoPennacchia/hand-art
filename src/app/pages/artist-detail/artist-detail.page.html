@@ -1,9 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>artistDetail</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <img alt="logo" height="75" src="../../../assets/icon/icon.png" slot="start" routerLink="">
+      <ion-searchbar id="custom-search"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-menu-button ></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-</ion-content>
+  <ion-content fullscreen>
+    <div *ngIf="artist">
+      <ion-card>
+        <img src="{{ artist.image.url }}" alt="NULL"/>
+        <ion-card-header class="ion-text-center">
+          <ion-card-title>{{ artist.name }}</ion-card-title>
+          <ion-card-subtitle> {{ artist.nationality }}, {{ artist.birthday }} </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ artist.blurb }}
+        </ion-card-content>
+        <div class="ion-text-center">
+          <ion-button>Back</ion-button>
+          <ion-button>Favorite</ion-button>
+        </div>
+      </ion-card>
+    </div>
+  </ion-content>
+</ion-app>
