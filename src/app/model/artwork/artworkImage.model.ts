@@ -13,8 +13,4 @@ export class ArtworkImage {
   tile_size: string;
   tile_base_url: string;
   tile_format: string;
-
-  artist: Artist;
-  dimensions: ArtworkDimension;
-  images: ArtworkImage; // Array?
 }

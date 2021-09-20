@@ -1,3 +1,7 @@
+import {ArtworkImage} from './artworkImage.model';
+import {Artist} from '../artist/artist.model';
+import {ArtworkDimension} from './artworkDimension.model';
+
 export class Artwork {
   id: string;
   _id: string;
@@ -9,4 +13,8 @@ export class Artwork {
   medium: string;
   date: string;
   additional_information: string;
+
+  artist: Artist;
+  dimensions: ArtworkDimension;
+  images: Array<ArtworkImage>; // Array?
 }

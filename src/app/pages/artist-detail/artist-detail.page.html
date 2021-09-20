@@ -22,8 +22,8 @@
           {{ artist.blurb }}
         </ion-card-content>
         <div class="ion-text-center">
-          <ion-button>Back</ion-button>
-          <ion-button>Favorite</ion-button>
+          <ion-button (click) = lastPage() > Back </ion-button>
+          <ion-button (click) = favoriteButton() ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
         </div>
       </ion-card>
     </div>

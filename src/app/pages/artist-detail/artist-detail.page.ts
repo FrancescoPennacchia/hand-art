@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Artist} from '../../model/artist/artist.model';
 import {ArtistService} from '../../service/artist.service';
@@ -14,7 +15,8 @@ export class ArtistDetailPage implements OnInit {
   public artist: Artist;
 
   constructor(private route: ActivatedRoute,
-              private artistService: ArtistService
+              private artistService: ArtistService,
+              private location: Location
               ) { }
 
   ngOnInit() {
@@ -24,8 +26,15 @@ export class ArtistDetailPage implements OnInit {
 
     this.artistService.getArtistByIdGraph(this.idArtist).subscribe(res => {
       this.artist = res;
-      //console.log(this.artist);
     });
+  }
+
+  lastPage(){
+      this.location.back();
+  }
+
+  favoriteButton(){
+
   }
 
 }

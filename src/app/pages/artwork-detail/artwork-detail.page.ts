@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ArtworkService} from '../../service/artwork.service';
+import {Artwork} from '../../model/artwork/artwork.model';
 
 @Component({
   selector: 'app-artwork-detail',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtworkDetailPage implements OnInit {
 
-  constructor() { }
+  private idArtwork: string;
+  public artwork: Artwork;
+
+  constructor(private route: ActivatedRoute,
+              private artworkService: ArtworkService,
+              private location: Location
+  ) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.idArtwork = params.get('id');
+    });
+
+    this.artworkService.getArtworkByIdGraph(this.idArtwork).subscribe(res => {
+      this.artwork = res;
+    });
+  }
+
+  lastPage(){
+    this.location.back();
+  }
+
+  favoriteButton(){
+
   }
 
 }
