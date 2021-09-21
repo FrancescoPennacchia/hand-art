@@ -10,6 +10,7 @@ export class Artwork {
   provenance: string;
   signature: string;
   literature: string;
+  collecting_institution: string;
   medium: string;
   date: string;
   additional_information: string;

@@ -26,6 +26,8 @@ export class ArtistDetailPage implements OnInit {
 
     this.artistService.getArtistByIdGraph(this.idArtist).subscribe(res => {
       this.artist = res;
+      // this.artist.image.url = this.artist.image.url.replace('tall', 'large');
+      // console.log (this.artist.image.url );
     });
   }
 

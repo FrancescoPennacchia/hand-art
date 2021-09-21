@@ -16,10 +16,21 @@
         <img src="{{ artwork.images[0].image_url }}" alt="NULL"/>
         <ion-card-header class="ion-text-center">
           <ion-card-title>{{ artwork.title }}</ion-card-title>
-          <ion-card-subtitle> {{ artwork.provenance }}, {{ artwork.date }} </ion-card-subtitle>
+          <ion-router-link color="dark" [routerLink]="['/artist-detail',  artwork.artist.id  ]">
+            <ion-card-subtitle> {{ artwork.artist.name }} </ion-card-subtitle>
+          </ion-router-link>
         </ion-card-header>
         <ion-card-content>
-          {{ artwork.additional_information }}
+          <ion-router-link color="gray" [routerLink]="['/artist-detail',  artwork.artist.id  ]">
+            <ion-row>Artist: {{ artwork.artist.name }}</ion-row>
+          </ion-router-link>
+          <ion-row>Date: {{ artwork.date}}</ion-row>
+          <ion-row>Nationality: {{ artwork.artist.nationality }}</ion-row>
+          <ion-row>Category: {{artwork.category}}</ion-row>
+          <ion-row>Collection institure: {{ artwork.collecting_institution}}</ion-row>
+          <ion-row>Type: {{ artwork.medium}}</ion-row>
+          <ion-row>Dimensions: {{ artwork.dimensions.cm}}</ion-row>
+          <ion-row>Additional information: {{ artwork.additional_information }} </ion-row>
         </ion-card-content>
         <div class="ion-text-center">
           <ion-button (click) = lastPage() > Back </ion-button>

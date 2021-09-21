@@ -27,8 +27,11 @@ export class ArtworkDetailPage implements OnInit {
 
     this.artworkService.getArtworkByIdGraph(this.idArtwork).subscribe(res => {
       this.artwork = res;
+
+
+      this.artwork.images[0].image_url = this.artwork.images[0].image_url.replace(':version', 'medium');
+      // console.log(this.artwork.images[0].image_url);
     });
-    // console.log(this.artwork);
   }
 
   lastPage(){
