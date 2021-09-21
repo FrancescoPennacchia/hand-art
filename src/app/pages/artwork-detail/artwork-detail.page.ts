@@ -22,11 +22,13 @@ export class ArtworkDetailPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.idArtwork = params.get('id');
+      console.log(this.idArtwork);
     });
 
     this.artworkService.getArtworkByIdGraph(this.idArtwork).subscribe(res => {
       this.artwork = res;
     });
+    // console.log(this.artwork);
   }
 
   lastPage(){
