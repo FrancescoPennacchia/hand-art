@@ -39,6 +39,10 @@ export class ArtworkDetailPage implements OnInit {
   }
 
   favoriteButton(){
+      console.log('mi premi');
+  }
+
+  downloadIMG(){
 
   }
 
