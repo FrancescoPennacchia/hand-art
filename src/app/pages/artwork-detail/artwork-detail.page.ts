@@ -46,6 +46,7 @@ export class ArtworkDetailPage implements OnInit {
       }
       else {
         // exit otherwise, but you could add further types here e.g. Windows
+        console.log('Windows non implementato');
         return false;
       }
     });
@@ -61,8 +62,6 @@ export class ArtworkDetailPage implements OnInit {
 
     this.artworkService.getArtworkByIdGraph(this.idArtwork).subscribe(res => {
       this.artwork = res;
-
-
       this.artwork.images[0].image_url = this.artwork.images[0].image_url.replace(':version', 'medium');
       // console.log(this.artwork.images[0].image_url);
     });
@@ -76,13 +75,23 @@ export class ArtworkDetailPage implements OnInit {
       console.log('mi premi');
   }
 
-  downloadIMG(){
+  async downloadIMG(){
     const fileTransfer: FileTransferObject = this.transfer.create();
     const url = this.artwork.images[0].image_url;
-    fileTransfer.download(url, this.storageDirectory + 'file.png').then((entry) => {
-      console.log('download complete: ' + entry.toURL());
-    }, (error) => {
-      // handle error
+    fileTransfer.download(url, this.storageDirectory + 'file.png').then(async (entry) => {
+      const alertSuccess = await this.alertCtrl.create({
+        header: `Download Succeeded!`,
+        subHeader: `successfully downloaded to: ${entry.toURL()}`,
+        buttons: ['Ok']
+      });
+      await alertSuccess.present();
+    }, async (error) => {
+      const alertFail = await this.alertCtrl.create({
+        header: `Download Fail!`,
+        subHeader: `Download Fail!`,
+        buttons: ['Ok']
+      });
+      await alertFail.present();
     });
 
   }
