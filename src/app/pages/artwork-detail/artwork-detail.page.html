@@ -19,10 +19,10 @@
           <ion-router-link color="dark" [routerLink]="['/artist-detail',  artwork.artist.id  ]">
             <ion-card-subtitle> {{ artwork.artist.name }} </ion-card-subtitle>
           </ion-router-link>
-          <ion-row class="ion-text-center">
+          <div class="ion-text-center">
             <ion-button (click) = favoriteButton() ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
             <ion-button (click) = showShareOptions(artwork) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
-          </ion-row>
+          </div>
         </ion-card-header>
         <ion-card-content>
           <ion-router-link color="gray" [routerLink]="['/artist-detail',  artwork.artist.id  ]">
