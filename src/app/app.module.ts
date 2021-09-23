@@ -20,10 +20,11 @@ import { HttpHeaders } from '@angular/common/http';
 import {InMemoryCache} from '@apollo/client/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialShareComponent } from './components/social-share/social-share.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, SocialShareComponent],
+  entryComponents: [SocialShareComponent],
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     IonicModule.forRoot(),

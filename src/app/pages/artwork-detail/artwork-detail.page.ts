@@ -5,7 +5,8 @@ import {ArtworkService} from '../../service/artwork.service';
 import {Artwork} from '../../model/artwork/artwork.model';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import {File} from '@ionic-native/file/ngx';
-import {AlertController, Platform} from '@ionic/angular';
+import {AlertController, ModalController, Platform} from '@ionic/angular';
+import {SocialShareComponent} from '../../components/social-share/social-share.component';
 
 declare var cordova: any;
 
@@ -30,7 +31,8 @@ export class ArtworkDetailPage implements OnInit {
               public platform: Platform,
               private file: File,
               private transfer: FileTransfer,
-              public alertCtrl: AlertController
+              public alertCtrl: AlertController,
+              public modalCtrl: ModalController
   ) {
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -95,5 +97,15 @@ export class ArtworkDetailPage implements OnInit {
     });
 
   }
+
+  async showShareOptions(artwork: Artwork) {
+    const modal = await this.modalCtrl.create({
+      component: SocialShareComponent,
+      cssClass: 'backTransparent',
+      backdropDismiss: true,
+    });
+    return modal.present();
+  }
+
 
 }
