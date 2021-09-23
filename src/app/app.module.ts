@@ -18,7 +18,8 @@ import {APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLink} from 'apollo-angular/http';
 import { HttpHeaders } from '@angular/common/http';
 import {InMemoryCache} from '@apollo/client/core';
-import { IonicStorageModule } from '@ionic/storage'
+import { IonicStorageModule } from '@ionic/storage';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { IonicStorageModule } from '@ionic/storage'
   providers: [
     FirebaseAuthService,
     SplashScreen,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     {
       provide: APOLLO_OPTIONS,
