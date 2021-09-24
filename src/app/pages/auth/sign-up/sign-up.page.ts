@@ -70,6 +70,7 @@ export class SignUpPage {
         Validators.required
       ]))
     });
+    this.user = new Utente();
     // Get firebase authentication redirect result invoken when using signInWithRedirect()
     // signInWithRedirect() is only used when client is in web but not desktop
     this.authRedirectResult = this.authService.getRedirectResult()
@@ -94,60 +95,24 @@ export class SignUpPage {
   }
 
   signUpWithEmail() {
-    this.user.username = this.signUpForm.value['username'];
-    this.user.nome = this.signUpForm.value['name'];
-    this.user.cognome = this.signUpForm.value['surname'];
-    this.user.email = this.signUpForm.value['email'];
-    this.user.password = this.signUpForm.value['password'];
-
-    //this.utenteService.
+    this.user.username = this.signUpForm.value.username;
+    this.user.nome = this.signUpForm.value.name;
+    this.user.cognome = this.signUpForm.value.surname;
+    this.user.email = this.signUpForm.value.email;
+    this.user.password = this.signUpForm.value.password;
+    // console.log(this.user);
+    console.log(this.utenteService.registerUser(this.user));
   }
 
   facebookSignUp() {
-    this.authService.signInWithFacebook()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
+
   }
 
   googleSignUp() {
-    this.authService.signInWithGoogle()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
+
   }
 
   twitterSignUp() {
-    this.authService.signInWithTwitter()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Twitter Access Token. You can use it to access the Twitter API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
+
   }
 }
