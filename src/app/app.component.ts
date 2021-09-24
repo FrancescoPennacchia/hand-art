@@ -10,7 +10,7 @@ import { Platform } from '@ionic/angular';
 export class AppComponent {
 
   public appPages = [
-    { title: 'Home', url: '/', icon: 'home' },
+    { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Artworks', url: '/artworks', icon: 'color-palette' },
     { title: 'Artists', url: '/artists', icon: 'people' },
   ];
