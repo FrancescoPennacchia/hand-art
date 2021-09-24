@@ -6,7 +6,7 @@ import { FirebaseAuthService } from '../../../service/firebase-auth.service';
 import { Subscription } from 'rxjs';
 import {Account, UtenteService} from '../../../service/utente.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Utente} from '../../../model/utente.model';
+import {UtenteResponse} from '../../../model/utenteResponse.model';
 import {AlertController, NavController} from '@ionic/angular';
 
 @Component({
@@ -41,7 +41,7 @@ export class SignInPage implements OnInit{
 
   signInWithUsername() {
     const account: Account = this.loginFormModel.value;
-    this.utenteService.login(account).subscribe((utente: Utente) => {
+    this.utenteService.login(account).subscribe((utente: UtenteResponse) => {
         this.loginFormModel.reset();
         this.navController.navigateRoot('home');
       },

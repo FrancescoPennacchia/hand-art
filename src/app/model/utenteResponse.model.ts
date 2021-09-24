@@ -1,7 +1,7 @@
-export class Utente {
+export class UtenteResponse {
   username: string;
   nome: string;
   cognome: string;
   email: string;
-  password: string;
+  token: string;
 }

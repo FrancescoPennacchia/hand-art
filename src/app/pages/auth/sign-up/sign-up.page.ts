@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../../../service/firebase-auth.service';
 import { Subscription } from 'rxjs';
+import {UtenteService} from '../../../service/utente.service';
+import {Utente} from '../../../model/utente.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,6 +16,7 @@ export class SignUpPage {
   signUpForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;
+  user: Utente;
 
   validation_messages = {
     'email': [
@@ -23,6 +26,18 @@ export class SignUpPage {
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+    ],
+    'name': [
+      { type: 'required', message: 'Name is required.' },
+      { type: 'minlength', message: 'Name must be at least 4 characters long.' }
+    ],
+    'surname': [
+      { type: 'required', message: 'Surname is required.' },
+      { type: 'minlength', message: 'Surname must be at least 4 characters long.' }
+    ],
+    'username': [
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password must be at least 4 characters long.' }
     ]
   };
 
@@ -30,15 +45,28 @@ export class SignUpPage {
     public angularFire: AngularFireAuth,
     public router: Router,
     private ngZone: NgZone,
-    private authService: FirebaseAuthService
+    private authService: FirebaseAuthService,
+    private utenteService: UtenteService
   ) {
     this.signUpForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
+      'name': new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(4)
+      ])),
       'password': new FormControl('', Validators.compose([
         Validators.minLength(6),
+        Validators.required
+      ])),
+      'username': new FormControl('', Validators.compose([
+        Validators.minLength(4),
+        Validators.required
+      ])),
+      'surname': new FormControl('', Validators.compose([
+        Validators.minLength(4),
         Validators.required
       ]))
     });
@@ -54,6 +82,7 @@ export class SignUpPage {
     });
   }
 
+  // this.signUpForm.value['email']
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
   // redirect the user to the profile page
   redirectLoggedUserToProfilePage() {
@@ -65,14 +94,13 @@ export class SignUpPage {
   }
 
   signUpWithEmail() {
-    this.authService.signUpWithEmail(this.signUpForm.value['email'], this.signUpForm.value['password'])
-    .then(user => {
-      // navigate to user profile
-      this.redirectLoggedUserToProfilePage();
-    })
-    .catch(error => {
-      this.submitError = error.message;
-    });
+    this.user.username = this.signUpForm.value['username'];
+    this.user.nome = this.signUpForm.value['name'];
+    this.user.cognome = this.signUpForm.value['surname'];
+    this.user.email = this.signUpForm.value['email'];
+    this.user.password = this.signUpForm.value['password'];
+
+    //this.utenteService.
   }
 
   facebookSignUp() {

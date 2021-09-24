@@ -3,9 +3,10 @@ import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
 import {AUTH_TOKEN, URL, UTENTE_STORAGE, X_AUTH} from '../constants';
-import {Utente} from '../model/utente.model';
+import {UtenteResponse} from '../model/utenteResponse.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Utente} from '../model/utente.model';
 
 export interface Account {
   username: string;
@@ -19,7 +20,7 @@ export interface Account {
 export class UtenteService {
   private authToken: string;
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private utente$: BehaviorSubject<Utente> = new BehaviorSubject<Utente>({} as Utente);
+  private utente$: BehaviorSubject<UtenteResponse> = new BehaviorSubject<UtenteResponse>({} as UtenteResponse);
 
   constructor(private http: HttpClient, private storage: Storage) {
 
@@ -36,9 +37,9 @@ export class UtenteService {
 
   }
 
-  login(account: Account): Observable<Utente> {
-    return this.http.post<Utente>(URL.LOGIN, account, {observe: 'response'}).pipe(
-      map((resp: HttpResponse<Utente>) => {
+  login(account: Account): Observable<UtenteResponse> {
+    return this.http.post<UtenteResponse>(URL.LOGIN, account, {observe: 'response'}).pipe(
+      map((resp: HttpResponse<UtenteResponse>) => {
         const token = resp.body.token;
         console.log('header');
         console.log(resp.headers.get(X_AUTH));
@@ -67,7 +68,7 @@ export class UtenteService {
     // Per gestirlo si dovrebbe fare lato server una blacklist.
   }
 
-  getUtente(): BehaviorSubject<Utente> {
+  getUtente(): BehaviorSubject<UtenteResponse> {
     return this.utente$;
   }
 
@@ -79,9 +80,12 @@ export class UtenteService {
     return this.loggedIn$.asObservable();
   }
 
-  updateProfilo(nuovoUtente: Utente): Observable<Utente> {
-    return this.http.post<Utente>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
-      map((resp: HttpResponse<Utente>) => {
+  registerUser(nuovoUtente: Utente): Observable<string> {
+    return this.http.post<string> (URL.REGISTER, nuovoUtente);
+  }
+  updateProfilo(nuovoUtente: UtenteResponse): Observable<UtenteResponse> {
+    return this.http.post<UtenteResponse>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
+      map((resp: HttpResponse<UtenteResponse>) => {
         // Aggiornamento dell'utente nello storage.
         // Utente memorizzato nello storage per evitare chiamata REST quando si vuole modificare il profilo
         // e se l'utente chiude la app e la riapre i dati sono gia' presenti

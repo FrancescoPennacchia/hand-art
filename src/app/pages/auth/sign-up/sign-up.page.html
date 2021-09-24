@@ -25,6 +25,42 @@
       </div>
 
       <ion-item class="input-item">
+        <ion-input type="name" placeholder="Name" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.name">
+          <div class="error-message" *ngIf="signUpForm.get('name').hasError(validation.type) && (signUpForm.get('name').dirty || signUpForm.get('name').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item class="input-item">
+        <ion-input type="surname" placeholder="Surname" formControlName="surname"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.surname">
+          <div class="error-message" *ngIf="signUpForm.get('surname').hasError(validation.type) && (signUpForm.get('surname').dirty || signUpForm.get('surname').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item class="input-item">
+        <ion-input type="username" placeholder="Username" formControlName="username"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.surname">
+          <div class="error-message" *ngIf="signUpForm.get('username').hasError(validation.type) && (signUpForm.get('username').dirty || signUpForm.get('username').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item class="input-item">
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
       </ion-item>
       <div class="error-container">
@@ -36,6 +72,7 @@
         </ng-container>
       </div>
     </ion-list>
+
 
     <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!signUpForm.valid">Sign Up</ion-button>
     <div class="error-container" *ngIf="submitError">
