@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProfileModel } from '../../../model/profile.model';
-import { FirebaseAuthService } from '../../../service/firebase-auth.service';
+import {UtenteResponse} from '../../../model/utenteResponse.model';
+import {UtenteService} from '../../../service/utente.service';
+import {NavController} from '@ionic/angular';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -9,27 +10,28 @@ import { FirebaseAuthService } from '../../../service/firebase-auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: ProfileModel;
+  utente: UtenteResponse;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: FirebaseAuthService
+    private navController: NavController,
+    private location: Location,
+    private utenteService: UtenteService
   ) { }
 
   ngOnInit() {
-    this.route.data
-    .subscribe((result) => {
-      this.user = result['data'];
-    }, (err) => {})
+    this.utenteService.getUtente().subscribe((utente) => {
+      this.utente = utente;
+    });
+  }
+
+  lastPage(){
+    this.location.back();
   }
 
   signOut() {
-    this.authService.signOut().subscribe(() => {
-      // Sign-out successful.
-      this.router.navigate(['sign-in']);
-    }, (error) => {
-      console.log('signout error', error);
-    });
+    this.utenteService.logout();
+    this.utente = null;
+    this.navController.navigateRoot('home');
   }
+
 }

@@ -10,17 +10,12 @@ import { ProfilePageResolver } from './profile.resolver';
 
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
+
 
 const routes: Routes = [
   {
     path: '',
     component: ProfilePage,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
-    resolve: {
-      data: ProfilePageResolver
-    }
   }
 ];
 
@@ -31,7 +26,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [ProfilePage],
-  providers: [ProfilePageResolver]
+  declarations: [ProfilePage]
 })
 export class ProfilePageModule {}
