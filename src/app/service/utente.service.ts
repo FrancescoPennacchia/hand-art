@@ -80,9 +80,13 @@ export class UtenteService {
     return this.loggedIn$.asObservable();
   }
 
-  registerUser(nuovoUtente: Utente): Observable<string> {
-    return this.http.post<string> (URL.REGISTER, nuovoUtente);
+  registerUser(nuovoUtente: Utente): Observable<any> {
+    return this.http.post( URL.REGISTER, nuovoUtente ).pipe(
+      map((resp: HttpResponse<string>) => {
+      return resp.body;
+    }));
   }
+
   updateProfilo(nuovoUtente: UtenteResponse): Observable<UtenteResponse> {
     return this.http.post<UtenteResponse>(URL.UPDATE_PROFILO, nuovoUtente, {observe: 'response'}).pipe(
       map((resp: HttpResponse<UtenteResponse>) => {

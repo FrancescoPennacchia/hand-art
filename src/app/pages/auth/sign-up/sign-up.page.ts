@@ -101,18 +101,29 @@ export class SignUpPage {
     this.user.email = this.signUpForm.value.email;
     this.user.password = this.signUpForm.value.password;
     // console.log(this.user);
-    console.log(this.utenteService.registerUser(this.user));
-  }
+    try{
+      this.utenteService.registerUser(this.user).subscribe(data => {
+        console.log(data);
+      });
+    } catch (err){
+      console.log(err);
+    }
+
+    this.ngZone.run(() => {
+      this.router.navigate(['sign-in']);
+    });
+   }
+
 
   facebookSignUp() {
-
+    console.log("Non funzionante");
   }
 
   googleSignUp() {
-
+    console.log("Non funzionante");
   }
 
   twitterSignUp() {
-
+    console.log("Non funzionante");
   }
 }

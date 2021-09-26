@@ -1,14 +1,17 @@
-<ion-header class="ion-no-border">
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+    <img alt="logo" height="75" src="../../../../assets/icon/icon.png" slot="start" routerLink="">
+    <ion-searchbar id="custom-search"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-menu-button ></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="sign-up-content">
-  <h2 class="auth-title">
-    Sign Up with Firebase
+  <br>
+  <h2 class="auth-title ion-text-center">
+    Sign Up
   </h2>
   <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
     <ion-list class="inputs-list" lines="full">
@@ -74,7 +77,9 @@
     </ion-list>
 
 
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!signUpForm.valid">Sign Up</ion-button>
+    <div margin-top="20px">
+      <ion-button icon-left size="medium" expand="full" shape="round" color="primary" type="submit" expand="block" [disabled]="!signUpForm.valid">Sign Up</ion-button>
+    </div>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>
@@ -89,7 +94,7 @@
   </form>
 
   <div class="social-auth-options">
-    <p class="options-divider">Or</p>
+    <p class="options-divider ion-text-center">Or</p>
     <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignUp()">Facebook Sign Up</ion-button>
     <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignUp()">Google Sign Up</ion-button>
     <ion-button class="social-auth-btn twitter-auth-btn" color="secondary" expand="block" (click)="twitterSignUp()">Twitter Sign Up</ion-button>
