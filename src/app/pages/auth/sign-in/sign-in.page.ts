@@ -64,7 +64,9 @@ export class SignInPage implements OnInit{
   }
 
 
-
+  signUp() {
+    this.navController.navigateRoot('sign-up');
+  }
 
 
     /*

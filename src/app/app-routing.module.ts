@@ -43,8 +43,6 @@ const routes: Routes = [
     path: 'artwork-detail/:id',
     loadChildren: () => import('./pages/artwork-detail/artwork-detail.module').then( m => m.ArtworkDetailPageModule)
   }
-
-
 ];
 
 @NgModule({
