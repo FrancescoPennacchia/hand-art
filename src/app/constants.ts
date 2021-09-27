@@ -19,7 +19,13 @@ export const URL = {
   REST_ARTWORK_LIST_OFFSET: URL_BASE + '/rest/artworks/offset',
   REST_ARTIST_BY_SORT: URL_BASE + '/rest/artists/sort',
   REST_ARTWORKS_BY_SORT: URL_BASE + '/rest/artists/sort',
-  REST_SEARCH: URL_BASE + '/rest/search'
+  REST_SEARCH: URL_BASE + '/rest/search',
+  REST_LIST_FAVORITE_ARTWORKS: URL_BASE + '/rest/get/artwork/favorite',
+  REST_LIST_FAVORITE_ARTISTS: URL_BASE + '/rest/get/artist/favorite',
+  REST_DELETE_FAVORITE_ARTWORKS: URL_BASE + '/rest/delete/artwork/favorite',
+  REST_DELETE_FAVORITE_ARTISTS: URL_BASE + '/rest/delete/artist/favorite',
+  REST_ADD_FAVORITE_ARTWORKS: URL_BASE + '/rest/add/artwork/favorite',
+  REST_ADD_FAVORITE_ARTISTS: URL_BASE + '/rest/add/artist/favorite'
 };
 
 export const X_AUTH = 'X-Auth';
