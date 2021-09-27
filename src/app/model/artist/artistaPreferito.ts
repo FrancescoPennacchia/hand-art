@@ -1,6 +1,6 @@
 import {Utente} from '../utente.model';
 
-export interface ArtistaPreferito {
+export class ArtistaPreferito {
   id: number;
   id_autore: string;
   nome: string;

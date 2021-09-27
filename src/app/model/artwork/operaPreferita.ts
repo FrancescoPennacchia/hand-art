@@ -1,6 +1,6 @@
 import {Utente} from '../utente.model';
 
-export interface OperaPreferita {
+export class OperaPreferita {
   id: number;
   id_opera: string;
   titolo: string;

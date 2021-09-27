@@ -9,6 +9,8 @@ import {Observable} from 'rxjs';
 
 import {Artist} from '../model/artist/artist.model';
 import {catchError, map, tap} from 'rxjs/operators';
+import {OperaPreferita} from '../model/artwork/operaPreferita';
+import {ArtistaPreferito} from '../model/artist/artistaPreferito';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +61,20 @@ export class ArtistService {
     return this.http.get<string>(URL.REST_ARTISTS_LIST_SIZE, {params});
   }
 
+
+  // Parte dedicata agli artisti preferiti
+  addFavoriteArtist(artista: ArtistaPreferito){
+    return this.http.post<ArtistaPreferito>(URL.REST_ADD_FAVORITE_ARTISTS, artista);
+  }
+
+  deleteFavoriteArtist(id: Long){
+    const params = new HttpParams().set('idUtente', String(id));
+    return this.http.delete<ArtistaPreferito>(URL.REST_DELETE_FAVORITE_ARTISTS, {params});
+  }
+
+  getFavoriteArtist(id: Long): Observable<ArtistaPreferito[]> {
+    const params = new HttpParams().set('idUtente', String(id));
+    return this.http.get<ArtistaPreferito[]>(URL.REST_LIST_FAVORITE_ARTISTS, {params});
+  }
 
 }

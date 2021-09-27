@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Artwork} from '../model/artwork/artwork.model';
 import {URL} from '../constants';
 import {Observable} from 'rxjs';
+import {OperaPreferita} from '../model/artwork/operaPreferita';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,21 @@ export class ArtworkService {
   getArtworkByIdRest(idArtwork: string ): Observable<string> {
     const apiURL = `${URL.REST_ARTWORK_BY_ID}/${idArtwork}`;
     return this.http.get<string>(apiURL);
+  }
+
+  // Parte dedicata alle opere preferite
+  addFavoriteArtwork(opera: OperaPreferita){
+    return this.http.post<OperaPreferita>(URL.REST_ADD_FAVORITE_ARTWORKS, opera);
+  }
+
+  deleteFavoriteArtwork(id: Long){
+    const params = new HttpParams().set('idOperaPreferita', String(id));
+    return this.http.delete<OperaPreferita>(URL.REST_DELETE_FAVORITE_ARTWORKS, {params});
+  }
+
+  getFavoriteArtwork(id: Long): Observable<OperaPreferita[]> {
+    const params = new HttpParams().set('id', String(id));
+    return this.http.get<OperaPreferita[]>(URL.REST_LIST_FAVORITE_ARTWORKS, {params});
   }
 
 }
