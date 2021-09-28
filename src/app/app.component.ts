@@ -24,8 +24,8 @@ export class AppComponent implements OnInit {
   ];
 
   public appPagesIsLog = [
-    { title: 'Favorites Artworks', url: '/artworks', icon: 'color-palette' },
-    { title: 'Favorites Artists', url: '/artists', icon: 'people' }
+    { title: 'Favorites Artworks', url: '/favorite-artwork', icon: 'color-palette' },
+    { title: 'Favorites Artists', url: '/favorite-artist', icon: 'people' }
   ];
 
   public userNotLog = [

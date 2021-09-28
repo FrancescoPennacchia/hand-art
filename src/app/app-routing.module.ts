@@ -42,7 +42,15 @@ const routes: Routes = [
   {
     path: 'artwork-detail/:id',
     loadChildren: () => import('./pages/artwork-detail/artwork-detail.module').then( m => m.ArtworkDetailPageModule)
+  },  {
+    path: 'favorite-artwork',
+    loadChildren: () => import('./pages/favorite-artwork/favorite-artwork.module').then( m => m.FavoriteArtworkPageModule)
+  },
+  {
+    path: 'favorite-artist',
+    loadChildren: () => import('./pages/favorite-artist/favorite-artist.module').then( m => m.FavoriteArtistPageModule)
   }
+
 ];
 
 @NgModule({

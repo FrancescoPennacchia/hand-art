@@ -47,9 +47,9 @@ export class ArtistDetailPage implements OnInit {
       });
 
       if ( this.utente.nome != null ) {
-        console.log('Utente loggato');
-        console.log(this.utente.id_utente);
-        console.log(this.artist.id);
+        // console.log('Utente loggato');
+        // console.log(this.utente.id_utente);
+        // console.log(this.artist.id);
         this.favorita = new ArtistaPreferito();
         this.artistService.getFavoriteArtist(this.utente.id_utente, this.artist.id).subscribe((artistpref) => {
           this.favorita = artistpref;

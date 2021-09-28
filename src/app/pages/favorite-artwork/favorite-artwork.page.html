@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img alt="logo" height="75" src="../../../assets/icon/icon.png" slot="start" routerLink="">
+    <ion-searchbar id="custom-search"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-row>
+    <ion-col *ngFor="let artwork of artworks;" size="6">
+      <ion-router-link color="dark" [routerLink]="['/artwork-detail',  artwork.id_opera  ]">
+        <img src="{{artwork.image}}" height="125" width="155"/>
+        <h2 class="cat-name">{{artwork.titolo}}</h2>
+      </ion-router-link>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
