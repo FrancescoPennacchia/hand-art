@@ -5,5 +5,5 @@ export class ArtistaPreferito {
   id_autore: string;
   nome: string;
   image: string;
-  utente: Utente;
+  id_utente: number;
 }

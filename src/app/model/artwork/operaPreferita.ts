@@ -5,5 +5,5 @@ export class OperaPreferita {
   id_opera: string;
   titolo: string;
   image: string;
-  utente: Utente;
+  id_utente: number;
 }

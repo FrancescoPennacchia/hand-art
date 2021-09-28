@@ -26,7 +26,6 @@ export class ArtworkDetailPage implements OnInit {
   public artwork: Artwork;
   public favorite: OperaPreferita;
   private utente: UtenteResponse;
-  private utenteAppo: Utente;
   storageDirectory = '';
 
   constructor(private route: ActivatedRoute,
@@ -81,7 +80,7 @@ export class ArtworkDetailPage implements OnInit {
 
   favoriteButton(art: Artwork){
     this.favorite = new OperaPreferita();
-    this.utenteAppo = new Utente();
+
 
     this.favorite.image = art.images[0].image_url;
     this.favorite.titolo = art.title;
@@ -90,14 +89,7 @@ export class ArtworkDetailPage implements OnInit {
     this.utenteService.getUtente().subscribe((utente) => {
       this.utente = utente;
     });
-
-    this.utenteAppo.nome = this.utente.nome;
-    this.utenteAppo.email = this.utente.email;
-    this.utenteAppo.cognome = this.utente.cognome;
-    this.utenteAppo.username = this.utente.username;
-    this.utenteAppo.password = '$2a$10$.529rofBLODfxwtg6jzAS.futsREaoKjiORBop8TBjvu5qclAVIA6';
-    this.favorite.utente = new Utente();
-    this.favorite.utente = this.utenteAppo;
+    this.favorite.id_utente = this.utente.id_utente;
 
     // console.log(this.favorite.utente);
     this.artworkService.addFavoriteArtwork(this.favorite).subscribe((favorite) => {
