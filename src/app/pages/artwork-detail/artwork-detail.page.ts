@@ -109,7 +109,7 @@ export class ArtworkDetailPage implements OnInit {
         this.favorite = favorite;
       });
       setTimeout(() => {
-        console.log('Async operation has ended');
+        // console.log('Async operation has ended');
         window.location.reload();
       }, 1000);
     }

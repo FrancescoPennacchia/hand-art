@@ -17,13 +17,22 @@
         <ion-card-header class="ion-text-center">
           <ion-card-title>{{ artist.name }}</ion-card-title>
           <ion-card-subtitle> {{ artist.nationality }}, {{ artist.birthday }} </ion-card-subtitle>
+          <div class="ion-text-center">
+            <div *ngIf="favorita != null">
+              <ion-button (click) = favoriteButtonDel() ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
+              <ion-button (click) = showShareOptions(artist) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
+            </div>
+            <div *ngIf="favorita == null">
+              <ion-button (click) = favoriteButtonAdd(artist) ><ion-icon name="heart-outline"></ion-icon></ion-button>
+              <ion-button (click) = showShareOptions(artist) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
+            </div>
+          </div>
         </ion-card-header>
         <ion-card-content>
           {{ artist.blurb }}
         </ion-card-content>
         <div class="ion-text-center">
           <ion-button (click) = lastPage() > Back </ion-button>
-          <ion-button (click) = favoriteButton() ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
         </div>
       </ion-card>
     </div>
