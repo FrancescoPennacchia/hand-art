@@ -54,9 +54,14 @@ export class ArtworkService {
     return this.http.delete<OperaPreferita>(URL.REST_DELETE_FAVORITE_ARTWORKS, {params});
   }
 
-  getFavoriteArtwork(id: number): Observable<OperaPreferita[]> {
+  getFavoritesArtworks(id: number): Observable<OperaPreferita[]> {
     const params = new HttpParams().set('id', String(id));
     return this.http.get<OperaPreferita[]>(URL.REST_LIST_FAVORITE_ARTWORKS, {params});
+  }
+
+  getFavoriteArtwork(id_utente: number, id_artwork: string): Observable<OperaPreferita> {
+    const params = new HttpParams().set('idUtente', String(id_utente)).set('idOpera', String(id_artwork));
+    return this.http.get<OperaPreferita>(URL.REST_FAVORITE_ARTWORK, {params});
   }
 
 }

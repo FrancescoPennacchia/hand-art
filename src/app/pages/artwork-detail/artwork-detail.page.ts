@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ArtworkService} from '../../service/artwork.service';
 import {Artwork} from '../../model/artwork/artwork.model';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
@@ -24,7 +24,8 @@ export class ArtworkDetailPage implements OnInit {
 
   private idArtwork: string;
   public artwork: Artwork;
-  public favorite: OperaPreferita;
+  public favorite: OperaPreferita = null;
+  private favorita: OperaPreferita = null;
   private utente: UtenteResponse;
   storageDirectory = '';
 
@@ -36,8 +37,10 @@ export class ArtworkDetailPage implements OnInit {
               private transfer: FileTransfer,
               public alertCtrl: AlertController,
               public modalCtrl: ModalController,
-              private utenteService: UtenteService
+              private utenteService: UtenteService,
+              private router: Router
   ) {
+    // this.artwork = new Artwork();
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
       if (!this.platform.is('cordova')) {
@@ -64,13 +67,25 @@ export class ArtworkDetailPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.idArtwork = params.get('id');
-      console.log(this.idArtwork);
+      // console.log(this.idArtwork);
     });
-
     this.artworkService.getArtworkByIdGraph(this.idArtwork).subscribe(res => {
       this.artwork = res;
       this.artwork.images[0].image_url = this.artwork.images[0].image_url.replace(':version', 'medium');
       // console.log(this.artwork.images[0].image_url);
+
+      this.utenteService.getUtente().subscribe((utente) => {
+        this.utente = utente;
+      });
+
+
+      if ( this.utente.nome != null ) {
+        console.log('Utente loggato');
+        this.favorita = new OperaPreferita();
+        this.artworkService.getFavoriteArtwork(this.utente.id_utente, this.artwork.id).subscribe((operapref) => {
+          this.favorita = operapref;
+        });
+      }
     });
   }
 
@@ -78,23 +93,35 @@ export class ArtworkDetailPage implements OnInit {
     this.location.back();
   }
 
-  favoriteButton(art: Artwork){
-    this.favorite = new OperaPreferita();
+  favoriteButtonAdd(art: Artwork){
+    if ( this.utente.id_utente == null ){
+      console.log('Non loggato');
+      this.router.navigate(['/sign-in']);
+    } else {
+      this.favorite = new OperaPreferita();
+      this.favorite.image = art.images[0].image_url;
+      this.favorite.titolo = art.title;
+      this.favorite.id_opera = art.id;
+      this.favorite.id_utente = this.utente.id_utente;
 
+      // console.log(this.favorite.utente);
+      this.artworkService.addFavoriteArtwork(this.favorite).subscribe((favorite) => {
+        this.favorite = favorite;
+      });
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        window.location.reload();
+      }, 1000);
+    }
+  }
 
-    this.favorite.image = art.images[0].image_url;
-    this.favorite.titolo = art.title;
-    this.favorite.id_opera = art.id;
-
-    this.utenteService.getUtente().subscribe((utente) => {
-      this.utente = utente;
+  favoriteButtonDel(){
+    // console.log(this.favorita.id);
+    this.artworkService.deleteFavoriteArtwork(this.favorita.id).subscribe(() => {
+      this.favorita = null;
     });
-    this.favorite.id_utente = this.utente.id_utente;
+    // window.location.reload();
 
-    // console.log(this.favorite.utente);
-    this.artworkService.addFavoriteArtwork(this.favorite).subscribe((favorite) => {
-
-    });
   }
 
   async downloadIMG(){

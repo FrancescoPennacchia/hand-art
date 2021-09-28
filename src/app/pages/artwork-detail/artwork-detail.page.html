@@ -20,8 +20,14 @@
             <ion-card-subtitle> {{ artwork.artist.name }} </ion-card-subtitle>
           </ion-router-link>
           <div class="ion-text-center">
-            <ion-button (click) = favoriteButton(artwork) ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
-            <ion-button (click) = showShareOptions(artwork) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
+            <div *ngIf="favorita != null">
+              <ion-button (click) = favoriteButtonDel() ><ion-icon name="heart-dislike-outline"></ion-icon></ion-button>
+              <ion-button (click) = showShareOptions(artwork) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
+            </div>
+            <div *ngIf="favorita == null">
+              <ion-button (click) = favoriteButtonAdd(artwork) ><ion-icon name="heart-outline"></ion-icon></ion-button>
+              <ion-button (click) = showShareOptions(artwork) > <ion-icon name="share-social-outline"></ion-icon> </ion-button>
+            </div>
           </div>
         </ion-card-header>
         <ion-card-content>
