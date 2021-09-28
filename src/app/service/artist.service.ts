@@ -67,12 +67,12 @@ export class ArtistService {
     return this.http.post<ArtistaPreferito>(URL.REST_ADD_FAVORITE_ARTISTS, artista);
   }
 
-  deleteFavoriteArtist(id: Long){
+  deleteFavoriteArtist(id: number){
     const params = new HttpParams().set('idUtente', String(id));
     return this.http.delete<ArtistaPreferito>(URL.REST_DELETE_FAVORITE_ARTISTS, {params});
   }
 
-  getFavoriteArtist(id: Long): Observable<ArtistaPreferito[]> {
+  getFavoriteArtist(id: number): Observable<ArtistaPreferito[]> {
     const params = new HttpParams().set('idUtente', String(id));
     return this.http.get<ArtistaPreferito[]>(URL.REST_LIST_FAVORITE_ARTISTS, {params});
   }

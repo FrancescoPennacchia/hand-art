@@ -49,12 +49,12 @@ export class ArtworkService {
     return this.http.post<OperaPreferita>(URL.REST_ADD_FAVORITE_ARTWORKS, opera);
   }
 
-  deleteFavoriteArtwork(id: Long){
+  deleteFavoriteArtwork(id: number){
     const params = new HttpParams().set('idOperaPreferita', String(id));
     return this.http.delete<OperaPreferita>(URL.REST_DELETE_FAVORITE_ARTWORKS, {params});
   }
 
-  getFavoriteArtwork(id: Long): Observable<OperaPreferita[]> {
+  getFavoriteArtwork(id: number): Observable<OperaPreferita[]> {
     const params = new HttpParams().set('id', String(id));
     return this.http.get<OperaPreferita[]>(URL.REST_LIST_FAVORITE_ARTWORKS, {params});
   }

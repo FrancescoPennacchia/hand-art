@@ -7,6 +7,10 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ng
 import {File} from '@ionic-native/file/ngx';
 import {AlertController, ModalController, Platform} from '@ionic/angular';
 import {SocialShareComponent} from '../../components/social-share/social-share.component';
+import {OperaPreferita} from '../../model/artwork/operaPreferita';
+import {UtenteService} from '../../service/utente.service';
+import {UtenteResponse} from '../../model/utenteResponse.model';
+import {Utente} from '../../model/utente.model';
 
 declare var cordova: any;
 
@@ -20,10 +24,10 @@ export class ArtworkDetailPage implements OnInit {
 
   private idArtwork: string;
   public artwork: Artwork;
+  public favorite: OperaPreferita;
+  private utente: UtenteResponse;
+  private utenteAppo: Utente;
   storageDirectory = '';
-
-
-
 
   constructor(private route: ActivatedRoute,
               private artworkService: ArtworkService,
@@ -32,7 +36,8 @@ export class ArtworkDetailPage implements OnInit {
               private file: File,
               private transfer: FileTransfer,
               public alertCtrl: AlertController,
-              public modalCtrl: ModalController
+              public modalCtrl: ModalController,
+              private utenteService: UtenteService
   ) {
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
@@ -52,6 +57,7 @@ export class ArtworkDetailPage implements OnInit {
         return false;
       }
     });
+    // this.favorite = null;
   }
 
 
@@ -73,8 +79,30 @@ export class ArtworkDetailPage implements OnInit {
     this.location.back();
   }
 
-  favoriteButton(){
-      console.log('mi premi');
+  favoriteButton(art: Artwork){
+    this.favorite = new OperaPreferita();
+    this.utenteAppo = new Utente();
+
+    this.favorite.image = art.images[0].image_url;
+    this.favorite.titolo = art.title;
+    this.favorite.id_opera = art.id;
+
+    this.utenteService.getUtente().subscribe((utente) => {
+      this.utente = utente;
+    });
+
+    this.utenteAppo.nome = this.utente.nome;
+    this.utenteAppo.email = this.utente.email;
+    this.utenteAppo.cognome = this.utente.cognome;
+    this.utenteAppo.username = this.utente.username;
+    this.utenteAppo.password = '$2a$10$.529rofBLODfxwtg6jzAS.futsREaoKjiORBop8TBjvu5qclAVIA6';
+    this.favorite.utente = new Utente();
+    this.favorite.utente = this.utenteAppo;
+
+    // console.log(this.favorite.utente);
+    this.artworkService.addFavoriteArtwork(this.favorite).subscribe((favorite) => {
+
+    });
   }
 
   async downloadIMG(){
