@@ -46,7 +46,7 @@ export class ArtistDetailPage implements OnInit {
         this.utente = utente;
       });
 
-      if ( this.utente.nome != null ) {
+      if ( this.utente != null ) {
         // console.log('Utente loggato');
         // console.log(this.utente.id_utente);
         // console.log(this.artist.id);
@@ -63,7 +63,11 @@ export class ArtistDetailPage implements OnInit {
   }
 
   favoriteButtonAdd(art: Artist){
-    if ( this.utente.id_utente == null ) {
+    this.utenteService.getUtente().subscribe((utente) => {
+      this.utente = utente;
+    });
+
+    if ( this.utente == null ) {
       console.log('Non loggato');
       this.router.navigate(['/sign-in']);
     } else {

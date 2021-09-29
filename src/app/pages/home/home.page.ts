@@ -13,6 +13,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 })
 export class HomePage implements OnInit {
   public popularArtists: Array<Artist>;
+  public cat: any[];
   loading = true;
   error: any;
 

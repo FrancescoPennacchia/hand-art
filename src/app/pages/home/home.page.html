@@ -12,11 +12,11 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <h1 class="cat-title">Featured Categories</h1>
+      <h1 class="cat-title">Categories</h1>
     </ion-row>
     <ion-row>
       <ion-col *ngFor="let cat of categoryHome;" size="6">
-        <ion-router-link color="dark" href="{{ cat.url }}">
+        <ion-router-link color="dark" [routerLink]="['/artworks-category',  cat.name  ]">
           <img src="{{ cat.src }}" height="125" width="155"/>
           <h2 class="cat-name">{{ cat.name }}</h2>
         </ion-router-link>

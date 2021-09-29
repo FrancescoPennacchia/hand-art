@@ -54,7 +54,12 @@ const routes: Routes = [
     path: 'favorite-artist',
     loadChildren: () => import('./pages/favorite-artist/favorite-artist.module').then( m => m.FavoriteArtistPageModule),
     canActivateChild: [AuthGuard]
+  },
+  {
+    path: 'artworks-category/:cat',
+    loadChildren: () => import('./pages/artworks-category/artworks-category.module').then( m => m.ArtworksCategoryPageModule)
   }
+
 
 ];
 

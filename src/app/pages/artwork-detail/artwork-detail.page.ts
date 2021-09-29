@@ -26,7 +26,7 @@ export class ArtworkDetailPage implements OnInit {
   public artwork: Artwork;
   public favorite: OperaPreferita = null;
   private favorita: OperaPreferita = null;
-  private utente: UtenteResponse;
+  private utente: UtenteResponse = null;
   storageDirectory = '';
 
   constructor(private route: ActivatedRoute,
@@ -79,7 +79,7 @@ export class ArtworkDetailPage implements OnInit {
       });
 
 
-      if ( this.utente.nome != null ) {
+      if ( this.utente != null ) {
         console.log('Utente loggato');
         this.favorita = new OperaPreferita();
         this.artworkService.getFavoriteArtwork(this.utente.id_utente, this.artwork.id).subscribe((operapref) => {
@@ -94,7 +94,7 @@ export class ArtworkDetailPage implements OnInit {
   }
 
   favoriteButtonAdd(art: Artwork){
-    if ( this.utente.id_utente == null ){
+    if ( this.utente == null ){
       console.log('Non loggato');
       this.router.navigate(['/sign-in']);
     } else {

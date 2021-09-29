@@ -42,6 +42,5 @@ export class ArtworksPage implements OnInit {
       }
       this.offset = this.offset + 5;
     });
-
   }
 }

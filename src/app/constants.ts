@@ -27,7 +27,8 @@ export const URL = {
   REST_DELETE_FAVORITE_ARTWORKS: URL_BASE + '/rest/delete/artwork/favorite',
   REST_DELETE_FAVORITE_ARTISTS: URL_BASE + '/rest/delete/artist/favorite',
   REST_ADD_FAVORITE_ARTWORKS: URL_BASE + '/rest/add/artwork/favorite',
-  REST_ADD_FAVORITE_ARTISTS: URL_BASE + '/rest/add/artist/favorite'
+  REST_ADD_FAVORITE_ARTISTS: URL_BASE + '/rest/add/artist/favorite',
+  REST_ARTWORKS_GENES: URL_BASE + '/rest/artworks/genes'
 };
 
 export const X_AUTH = 'X-Auth';

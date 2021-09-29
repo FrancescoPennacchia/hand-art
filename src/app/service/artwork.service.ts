@@ -64,4 +64,10 @@ export class ArtworkService {
     return this.http.get<OperaPreferita>(URL.REST_FAVORITE_ARTWORK, {params});
   }
 
+  getArtworkByGenes(size: number, gene: string): Observable<any> {
+    // gene = gene.replace(' ', '-');
+    const params = new HttpParams().set('size', String(size)).set('genes', encodeURI(gene));
+    return this.http.get<string>(URL.REST_ARTWORKS_GENES, {params});
+  }
+
 }
