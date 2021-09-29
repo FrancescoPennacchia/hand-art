@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {AuthGuard} from './guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/auth/profile/profile.module').then(m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/auth/profile/profile.module').then(m => m.ProfilePageModule),
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'sign-in',
@@ -42,13 +44,16 @@ const routes: Routes = [
   {
     path: 'artwork-detail/:id',
     loadChildren: () => import('./pages/artwork-detail/artwork-detail.module').then( m => m.ArtworkDetailPageModule)
-  },  {
+  },
+  {
     path: 'favorite-artwork',
-    loadChildren: () => import('./pages/favorite-artwork/favorite-artwork.module').then( m => m.FavoriteArtworkPageModule)
+    loadChildren: () => import('./pages/favorite-artwork/favorite-artwork.module').then( m => m.FavoriteArtworkPageModule),
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'favorite-artist',
-    loadChildren: () => import('./pages/favorite-artist/favorite-artist.module').then( m => m.FavoriteArtistPageModule)
+    loadChildren: () => import('./pages/favorite-artist/favorite-artist.module').then( m => m.FavoriteArtistPageModule),
+    canActivateChild: [AuthGuard]
   }
 
 ];

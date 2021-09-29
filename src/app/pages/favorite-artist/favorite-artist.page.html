@@ -13,7 +13,7 @@
 
   <ion-row>
     <ion-col *ngFor="let artist of artists;" size="6">
-      <ion-router-link color="dark" [routerLink]="['/artwork-detail',  artist.id_autore ]">
+      <ion-router-link color="dark" [routerLink]="['/artist-detail',  artist.id_autore ]">
         <img src="{{artist.image}}" height="125" width="155"/>
         <h2 class="cat-name">{{artist.nome}}</h2>
       </ion-router-link>
