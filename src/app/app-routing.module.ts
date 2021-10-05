@@ -58,8 +58,11 @@ const routes: Routes = [
   {
     path: 'artworks-category/:cat',
     loadChildren: () => import('./pages/artworks-category/artworks-category.module').then( m => m.ArtworksCategoryPageModule)
+  },
+  {
+    path: 'search/:value',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   }
-
 
 ];
 

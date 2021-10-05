@@ -11,9 +11,9 @@ export class SearchService {
   constructor(private http: HttpClient) {
   }
 
-  getArtistByIdRest(value: string ): Observable<string> {
-    const apiURL = `${URL.REST_SEARCH}/${value}`;
-    return this.http.get<string>(apiURL);
+  getSearch(value: string ): Observable<any> {
+    const params = new HttpParams().set('value', encodeURI(value));
+    return this.http.get<string>(URL.REST_SEARCH, {params});
   }
 
 }

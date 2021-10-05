@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ArtistService} from '../../service/artist.service';
 import {Artist} from '../../model/artist/artist.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 
@@ -27,13 +28,19 @@ export class HomePage implements OnInit {
   ];
 
 
-  constructor(private artistiService: ArtistService) {
-  }
+  constructor(private artistiService: ArtistService,
+              private router: Router
+  ) { }
 
   ngOnInit() {
     this.artistiService.getPopularArtistGraph(5).subscribe(res => {
       this.popularArtists = res;
       // console.log(this.popularArtists);
     });
+  }
+
+  search(ev) {
+    this.router.navigate(['/search', ev.target.value]);
+    // console.log(ev.target.value);
   }
 }

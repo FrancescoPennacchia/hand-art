@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <img alt="logo" height="75" src="../../../assets/icon/icon.png" slot="start" routerLink="">
-    <ion-searchbar id="custom-search"></ion-searchbar>
+    <ion-searchbar (keyup.enter)="search($event)" id="custom-search"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
