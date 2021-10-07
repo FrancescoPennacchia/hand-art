@@ -12,7 +12,7 @@ export class SearchService {
   }
 
   getSearch(value: string ): Observable<any> {
-    const params = new HttpParams().set('value', encodeURI(value));
+    const params = new HttpParams().set('value', value);
     return this.http.get<string>(URL.REST_SEARCH, {params});
   }
 

@@ -14,7 +14,7 @@
   <ion-row>
     <ion-col *ngFor="let artwork of artworks;" size="6">
       <ion-router-link color="dark" [routerLink]="['/artwork-detail',  artwork.id  ]">
-        <img src="{{artwork._links.thumbnail.href}}" height="125" width="155"/>
+        <img src="{{artwork._links.thumbnail.href}}" height="125" width="155" alt="NULL"/>
         <h2 class="cat-name">{{artwork.title}}</h2>
       </ion-router-link>
     </ion-col>
